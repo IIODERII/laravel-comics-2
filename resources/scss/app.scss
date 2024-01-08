@@ -1,0 +1,171 @@
+@use "./partials/variables" as *;
+
+$fa-font-path: "../webfonts" !default;
+
+@import "~@fortawesome/fontawesome-free/scss/fontawesome";
+@import "~@fortawesome/fontawesome-free/scss/regular";
+@import "~@fortawesome/fontawesome-free/scss/solid";
+@import "~@fortawesome/fontawesome-free/scss/brands";
+
+@import "~bootstrap/scss/bootstrap";
+
+#navBar {
+    .active {
+        color: #0c7cec !important;
+    }
+
+    a {
+        font-size: 0.9em;
+        padding: 50px 0;
+        border-width: 5px !important;
+    }
+}
+
+#mainTop {
+    .jumbo {
+        height: 500px;
+        background-image: url("../img/jumbotron.jpg");
+        background-position: center top;
+        background-repeat: no-repeat;
+        background-size: cover;
+
+        button {
+            position: absolute;
+            top: 96%;
+        }
+    }
+
+    .text-white {
+        > div {
+            margin: 0 auto;
+            max-width: 300px;
+        }
+        transition: all 0.3s ease;
+        &:hover {
+            cursor: pointer;
+            transform: scale(1.05);
+
+            > div {
+                color: #0d6efd;
+                transition: all 0.2s ease;
+            }
+        }
+        .c-img {
+            height: 300px;
+            width: 300px;
+            img {
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+                object-position: center top;
+            }
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        .text-white {
+            .c-img {
+                width: 100%;
+                height: 85vw;
+            }
+        }
+    }
+}
+
+#mainBottom {
+    ul {
+        li {
+            div {
+                height: 80px;
+                padding: 0 20px;
+            }
+            &:hover {
+                cursor: pointer;
+                background-color: rgba(255, 255, 255, 0.1);
+                transition: all 0.3s ease;
+            }
+        }
+        & li:last-child div {
+            height: 60px;
+        }
+    }
+}
+
+#footTop {
+    .wrapper {
+        background-image: url("../img/footer-bg.jpg");
+        background-size: cover;
+        overflow: hidden;
+        //height: 580px;
+
+        h3 {
+            font-size: 1.3em;
+        }
+
+        a {
+            color: #999;
+            font-size: 0.8em;
+
+            &:hover {
+                text-decoration: underline !important;
+                color: #0d6efd;
+            }
+        }
+
+        .container {
+            background-image: url("../img/dc-logo-bg.png");
+            background-repeat: no-repeat;
+
+            background-position: center right;
+        }
+
+        @media screen and (min-width: 768px) {
+            .row {
+                width: 50% !important;
+            }
+        }
+    }
+}
+
+#footBot {
+    .my-bg {
+        background-color: #303030;
+
+        img:hover {
+            cursor: pointer;
+            filter: invert(1);
+            transition: all 0.3s ease-in-out;
+        }
+
+        @media screen and (max-width: 576px) {
+            h3 {
+                width: 100%;
+            }
+        }
+    }
+}
+
+#view_comic {
+    img {
+        max-height: 500px;
+    }
+
+    a {
+        text-decoration: none;
+        color: #0d6efd;
+
+        i {
+            transition: all 0.3s ease;
+        }
+        &:hover {
+            text-decoration: underline;
+
+            i.fa-arrow-right {
+                transform: translateX(5px);
+            }
+            i.fa-arrow-left {
+                transform: translateX(-5px);
+            }
+        }
+    }
+}
