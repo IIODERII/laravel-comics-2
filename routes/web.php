@@ -16,8 +16,9 @@ use App\Http\Controllers\ComicController;
 
 
 Route::get('/', function () {
-    return to_route('comics');
+    return redirect('/comics');
 });
+
 Route::resource('comics', App\Http\Controllers\ComicController::class);
 
 // Route::get('/comics', function () {
