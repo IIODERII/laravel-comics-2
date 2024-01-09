@@ -26,12 +26,17 @@ Route::resource('comics', App\Http\Controllers\ComicController::class);
 //     return view('comics', compact('comics'));
 // })->name('comics');
 
-Route::get('/comics/{index}', function ($index) {
-    $comics = config('db.comics');
-    $comic = $comics[$index];
-    return view('partials.view_comic', compact('comic', 'index', 'comics'));
-})->name('view_comic');
+// Route::get('/comics/{index}', function ($index) {
+//     $comics = config('db.comics');
+//     $comic = $comics[$index];
+//     return view('partials.view_comic', compact('comic', 'index', 'comics'));
+// })->name('view_comic');
 
-Route::get('/create', function () {
-    return view('partials.create');
-})->name('create');
+// Route::get('/create', function () {
+//     return view('partials.create');
+// })->name('create');
+
+// Route::get('/comics/{index}/edit', function () {
+//     return view('partials.edit');
+// })->name('edit');
+

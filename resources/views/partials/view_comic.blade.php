@@ -14,6 +14,14 @@
                 <img src="{{ $comic->thumb }}" alt="{{ $comic->title }}" class="h-100">
                 <div class="px-4 d-flex flex-column justify-content-between h-100">
                     <div>
+                        <a href="{{ route('comics.edit', $comic->id) }}" class="text-white btn btn-success rounded-0">Edit</a>
+                        <a href="{{ route('comics.destroy', $comic->id) }}">
+                            <form action="{{ route('comics.destroy', $comic->id) }}" method="POST" class="d-inline">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="text-white btn btn-danger rounded-0">Delete</button>
+                            </form>
+                        </a>
                         <h1>{{ $comic->title }}</h1>
                         <p>{{ $comic->description }}</p>
                     </div>

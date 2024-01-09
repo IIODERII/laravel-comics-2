@@ -34,7 +34,7 @@
                     <div class="container">
                         <button class="btn btn-primary rounded-0">Current series</button>
                         <button class="btn btn-success rounded-0" style="margin-left: 150px">
-                            <a href="{{ route('create') }}" class="text-white text-decoration-none">
+                            <a href="{{ route('comics.create') }}" class="text-white text-decoration-none">
                                 Add a
                                 new
                                 comic
@@ -45,6 +45,9 @@
                 <div class="bg-black">
                     <div class="container fs-3 fw-bold py-5">
                         <div class="row justify-content-center">
+                            @if (session()->has('message'))
+                                <div class="alert alert-warning">{{ session('message') }}</div>
+                            @endif
                             @foreach ($comics as $key => $comic)
                                 <div class="text-white col-12 col-md-6 col-lg-4 col-xxl-3 py-2">
                                     <div class="h-100 d-flex flex-column justify-content-between">
@@ -56,7 +59,8 @@
                                         <div>
                                             <div class="d-flex justify-content-between">
                                                 <span>{{ $comic->price }}</span>
-                                                <a href="{{ route('view_comic', $comic->id) }}" class="btn btn-primary">View
+                                                <a href="{{ route('comics.show', $comic->id) }}"
+                                                    class="btn btn-primary">View
                                                     More</a>
                                             </div>
                                         </div>
