@@ -16,10 +16,12 @@
                     <div>
                         <a href="{{ route('comics.edit', $comic->id) }}" class="text-white btn btn-success rounded-0">Edit</a>
                         <a href="{{ route('comics.destroy', $comic->id) }}">
-                            <form action="{{ route('comics.destroy', $comic->id) }}" method="POST" class="d-inline">
+                            <form action="{{ route('comics.destroy', $comic->id) }}" method="POST" class="d-inline"
+                                id="delete-form">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="text-white btn btn-danger rounded-0">Delete</button>
+                                <button type="submit" class="text-white btn btn-danger rounded-0 cancel-button"
+                                    data-item-title="{{ $comic->title }}">Delete</button>
                             </form>
                         </a>
                         <h1>{{ $comic->title }}</h1>
@@ -47,4 +49,6 @@
             </div>
         </div>
     </main>
+
+    @include('partials/modal_delete')
 @endsection

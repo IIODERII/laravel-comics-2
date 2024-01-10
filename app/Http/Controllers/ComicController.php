@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Comic;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\StoreComicRequest;
+use App\Http\Requests\UpdateComicRequest;
 
 class ComicController extends Controller
 {
@@ -15,7 +18,7 @@ class ComicController extends Controller
     public function index()
     {
         $comics = Comic::all();
-        return view('comics', compact('comics'));
+        return view('comics.comics', compact('comics'));
     }
 
     /**
@@ -25,22 +28,25 @@ class ComicController extends Controller
      */
     public function create()
     {
-        return view('partials.create');
+        return view('comics.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreComicRequest $request)
     {
-        $request->validate([
-            'title' => 'required|min:3|max:50',
-            'price' => 'required',
-            'type' => 'required',
-        ]);
+        // $request->validate([
+        //     'title' => 'required|min:3|max:50',
+        //     'price' => 'required',
+        //     'type' => 'required',
+        // ]);
+        //$formdata = $this->validateComic($request->all());
+
+        $formdata = $request->validated();
+
         $data = $request->all();
         $newComic = new Comic();
         $newComic->title = $data['title'];
@@ -63,7 +69,7 @@ class ComicController extends Controller
     public function show(Comic $comic)
     {
         $comics = config('db.comics');
-        return view('partials.view_comic', compact('comic'));
+        return view('comics.view_comic', compact('comic'));
 
     }
 
@@ -71,11 +77,10 @@ class ComicController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Comic  $comic
-     * @return \Illuminate\Http\Response
      */
     public function edit(Comic $comic)
     {
-        return view('partials.edit', compact('comic'));
+        return view('comics.edit', compact('comic'));
     }
 
     /**
@@ -83,10 +88,18 @@ class ComicController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Comic  $comic
-     * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Comic $comic)
+    public function update(UpdateComicRequest $request, Comic $comic)
     {
+        // $request->validate([
+        //     'title' => 'required|min:3|max:50',
+        //     'price' => 'required',
+        //     'type' => 'required',
+        // ]);
+        //$formdata = $this->validateComic($request->all());
+
+        $formdata = $request->validated();
+
         $data = $request->all();
         $comic->title = $data['title'];
         $comic->description = $data['description'];
@@ -96,18 +109,34 @@ class ComicController extends Controller
         $comic->sale_date = '2020-07-01';
         $comic->type = 'a piacere';
         $comic->update();
-        return to_route('comics.index');
+        return view('comics.view_comic', compact('comic'));
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Comic  $comic
-     * @return \Illuminate\Http\Response
      */
     public function destroy(Comic $comic)
     {
         $comic->delete();
         return to_route('comics.index')->with('message', "The comic $comic->title has been successfully deleted");
     }
+
+    // private function validateComic($data)
+    // {
+    //     $validator = Validator::make($data, [
+    //         'title' => 'required|min:3|max:50',
+    //         'price' => 'required',
+    //         'type' => 'required',
+    //     ], [
+    //         'title.required' => 'You have to insert a title',
+    //         'price.required' => 'You have to insert a price',
+    //         'type.required' => 'You have to insert a type',
+    //         'title.min' => 'The minimum number of characters for the title is :min',
+    //         'title.max' => 'The maximum number of characters for the title is :max',
+    //     ])->validate();
+
+    //     return $validator;
+    // }
 }
