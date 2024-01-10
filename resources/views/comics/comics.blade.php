@@ -31,7 +31,7 @@
         <div class="container-fluid">
             <div class="row" id="mainTop">
                 <div class="jumbo position-relative">
-                    <div class="container">
+                    <div class="container d-flex justify-content-between">
                         <button class="btn btn-primary rounded-0">Current series</button>
                         <button class="btn btn-success rounded-0" style="margin-left: 150px">
                             <a href="{{ route('comics.create') }}" class="text-white text-decoration-none">
@@ -40,6 +40,15 @@
                                 comic
                             </a>
                         </button>
+                        <form action="{{ route('comics.index') }}" class="" method="GET"
+                            style="margin-left: 320px; margin-top: 480px">
+                            <input class="form-control" type="text" name="search" placeholder="Search a comic">
+                            <button class="btn btn-primary rounded-start-0" style="margin-left: 200px"
+                                type="submit">Search</button>
+                        </form>
+                        <button class="btn btn-secondary" style="margin-left: 610px"><a
+                                class="text-white text-decoration-none" href="/comics">All
+                                comics</a></button>
                     </div>
                 </div>
                 <div class="bg-black">
@@ -47,6 +56,9 @@
                         <div class="row justify-content-center">
                             @if (session()->has('message'))
                                 <div class="alert alert-warning">{{ session('message') }}</div>
+                            @endif
+                            @if (count($comics) === 0)
+                                <div class="alert alert-primary text-center">No comic found</div>
                             @endif
                             @foreach ($comics as $key => $comic)
                                 <div class="text-white col-12 col-md-6 col-lg-4 col-xxl-3 py-2">
