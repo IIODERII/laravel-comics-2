@@ -35,11 +35,11 @@ class StoreComicRequest extends FormRequest
     {
 
         return [
-            'title.required' => 'You have to insert a title',
-            'price.required' => 'You have to insert a price',
-            'type.required' => 'You have to insert a type',
-            'title.min' => 'The minimum number of characters for the title is :min',
-            'title.max' => 'The maximum number of characters for the title is :max',
+            'title.required' => 'Il campo del titolo è obbligatorio',
+            'price.required' => 'Il campo del prezzo è obbligatorio',
+            'type.required' => 'Il campo del tipo è obbligatorio',
+            'title.min' => 'Il campo del titolo deve contenere almeno :min caratteri',
+            'title.max' => 'Il campo del titolo deve contenere al massimo :max caratteri',
         ];
 
     }

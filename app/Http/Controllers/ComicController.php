@@ -13,9 +13,9 @@ class ComicController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\View\View
+
      */
-    public function index(Request $request): \Illuminate\View\View
+    public function index(Request $request)
     {
 
         if (!empty($request->query('search'))) {
